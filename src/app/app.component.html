@@ -1,0 +1,40 @@
+<div class="sidebar d-flex flex-column">
+  <nav>
+    <ul>
+      <li (click)="navigateTo('about')">
+        <a
+          ><i class="fas fa-user icon"></i
+          ><span class="menu-text">Sobre Mim</span></a
+        >
+      </li>
+      <li (click)="navigateTo('skills')">
+        <a
+          ><i class="fas fa-code icon"></i
+          ><span class="menu-text">Skills</span></a
+        >
+      </li>
+      <li (click)="navigateTo('projects')">
+        <a
+          ><i class="fas fa-project-diagram icon"></i
+          ><span class="menu-text">Projetos</span></a
+        >
+      </li>
+      <li (click)="navigateTo('contact')">
+        <a
+          ><i class="fas fa-envelope icon"></i
+          ><span class="menu-text">Contato</span></a
+        >
+      </li>
+    </ul>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="sidebar-header">
+      <h1>Aline Nink</h1>
+      <p>Front End Developer</p>
+    </div>
+  </div>
+</div>
+<div class="main">
+  <router-outlet></router-outlet>
+</div>
