@@ -5,33 +5,20 @@
   "projects": {
     "alinenink": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/default",
-            "index": "src/app/index.html",
-            "browser": "src/app/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "outputPath": "docs",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/app/favicon.ico",
-              "src/app/assets"
-            ],
-            "styles": [
-              "src/app/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -48,7 +35,8 @@
                   "maximumWarning": "500kb",
                   "maximumError": "1mb"
                 }
-              ]
+              ],
+              "baseHref": "/"
             }
           },
           "defaultConfiguration": "production"
@@ -56,14 +44,14 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "buildTarget": "alinenink:build"
+            "browserTarget": "alinenink:build"
           },
           "configurations": {
             "production": {
-              "buildTarget": "alinenink:build:production"
+              "browserTarget": "alinenink:build:production"
             },
             "development": {
-              "buildTarget": "alinenink:build:development"
+              "browserTarget": "alinenink:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -72,6 +60,6 @@
     }
   },
   "cli": {
-    "analytics": "a18794b9-af8b-42b1-852b-0b63e1d57a08"
+    "analytics": false
   }
 }
