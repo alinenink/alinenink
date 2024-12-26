@@ -1,18 +1,14 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: "app-contact",
-  templateUrl: "./contact.component.html",
-  styleUrls: ["./contact.component.scss"]
+  selector: 'app-contact',
+  standalone: true,
+  imports: [CommonModule, MatIconModule],
+  templateUrl: './contact.component.html',
+  styleUrls: ['./contact.component.scss'],
 })
-
-export class ContactComponent implements OnInit {
-  
-  constructor() { 
-
-  }
-
-  ngOnInit() {
-
-  }
+export class ContactComponent {
+  whatsappLink = 'https://wa.me/<SEU_NUMERO>?text=Hi%20Aline%20Nink!';
 }

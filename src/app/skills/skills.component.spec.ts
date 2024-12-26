@@ -1,26 +1,23 @@
-import { NO_ERRORS_SCHEMA } from "@angular/core";
-import { SkillsComponent } from "./skills.component";
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-describe("SkillsComponent", () => {
+import { SkillsComponent } from './skills.component';
 
-  let fixture: ComponentFixture<SkillsComponent>;
+describe('SkillsComponent', () => {
   let component: SkillsComponent;
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      schemas: [NO_ERRORS_SCHEMA],
-      providers: [
-      ],
-      declarations: [SkillsComponent]
-    });
+  let fixture: ComponentFixture<SkillsComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [SkillsComponent]
+    })
+    .compileComponents();
 
     fixture = TestBed.createComponent(SkillsComponent);
     component = fixture.componentInstance;
-
+    fixture.detectChanges();
   });
 
-  it("should be able to create component instance", () => {
-    expect(component).toBeDefined();
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
-  
 });

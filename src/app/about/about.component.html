@@ -1,10 +1,15 @@
-<div class="card custom-card" style="width: 60rem">
-  <div class="card-body">
-    <h5 class="card-title">Sobre Mim</h5>
-    <p class="card-text">
-      Some quick example text to build on the card title and make up the bulk of
-      the card's content.
-    </p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+  <div class="about-container"  id="about">
+    <h2>About Me</h2>
+    <p>Here’s a quick glance at my journey so far.</p>
+    
+    <div class="timeline">
+      <div class="timeline-item" *ngFor="let item of timeline">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+          <span>{{ item.date }}</span>
+        </div>
+      </div>
+    </div>
   </div>
-</div>

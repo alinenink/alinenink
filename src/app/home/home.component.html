@@ -1,0 +1,12 @@
+<div class="home-container">
+  <div class="photo-container">
+    <div class="photo-wrapper">
+      <img src="assets/minha-foto.jpg" alt="Aline Nink" class="profile-pic" />
+    </div>
+  </div>
+  <h1>
+    {{ 'HELLO' | translate }} <span class="highlight">{{ 'ALINE_NINK' | translate }}</span>
+  </h1>
+  <p id="animated-text" class="description"></p>
+  <button (click)="scrollToSection('about')">{{ 'ABOUT_ME' | translate }}</button>
+</div>

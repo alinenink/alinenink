@@ -9,39 +9,48 @@
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "docs",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                }
-              ],
-              "baseHref": "/"
-            }
-          },
-          "defaultConfiguration": "production"
+      "build": {
+        "builder": "@angular-devkit/build-angular:browser",
+        "options": {
+          "outputPath": "docs",
+          "index": "src/index.html",
+          "main": "src/main.ts",
+          "polyfills": "src/polyfills.ts",
+          "tsConfig": "tsconfig.app.json",
+          "assets": ["src/favicon.ico", "src/assets"],
+          "styles": ["src/styles.scss"],
+          "scripts": []
         },
-        "serve": {
+        "configurations": {
+          "production": {
+            "optimization": true,
+            "outputHashing": "all",
+            "sourceMap": false,
+            "namedChunks": false,
+            "aot": true,
+            "extractLicenses": true,
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "500kb",
+                "maximumError": "1mb"
+              }
+            ],
+            "baseHref": "/"
+          },
+          "development": {
+            "optimization": false,
+            "sourceMap": true,
+            "namedChunks": true,
+            "aot": false,
+            "extractLicenses": false,
+            "vendorChunk": true,
+            "buildOptimizer": false
+          }
+        },
+        "defaultConfiguration": "production"
+      },
+      "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "alinenink:build"

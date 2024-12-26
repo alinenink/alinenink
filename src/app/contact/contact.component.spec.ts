@@ -1,26 +1,23 @@
-import { NO_ERRORS_SCHEMA } from "@angular/core";
-import { ContactComponent } from "./contact.component";
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-describe("ContactComponent", () => {
+import { ContactComponent } from './contact.component';
 
-  let fixture: ComponentFixture<ContactComponent>;
+describe('ContactComponent', () => {
   let component: ContactComponent;
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      schemas: [NO_ERRORS_SCHEMA],
-      providers: [
-      ],
-      declarations: [ContactComponent]
-    });
+  let fixture: ComponentFixture<ContactComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [ContactComponent]
+    })
+    .compileComponents();
 
     fixture = TestBed.createComponent(ContactComponent);
     component = fixture.componentInstance;
-
+    fixture.detectChanges();
   });
 
-  it("should be able to create component instance", () => {
-    expect(component).toBeDefined();
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
-  
 });

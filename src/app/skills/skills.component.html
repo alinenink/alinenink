@@ -1,7 +1,24 @@
-<div class="card custom-card" style="width: 60rem">
-  <div class="card-body">
-    <h5 class="card-title">Skills</h5>
-    <p class="card-text">Angular 13</p>
-    <div class="skill-bar"></div>
+<div class="skills-container">
+    <h2>My Skills</h2>
+    <p>Here are the skills I’ve mastered over the years.</p>
+  
+    <mat-tab-group>
+      <mat-tab label="Hard Skills">
+        <div class="skills-grid">
+          <div class="skill-card" *ngFor="let skill of hardSkills">
+            <mat-icon class="skill-icon">{{ skill.icon }}</mat-icon>
+            <h3>{{ skill.name }}</h3>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Soft Skills">
+        <div class="skills-grid">
+          <div class="skill-card" *ngFor="let skill of softSkills">
+            <mat-icon class="skill-icon">{{ skill.icon }}</mat-icon>
+            <h3>{{ skill.name }}</h3>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
   </div>
-</div>
+  

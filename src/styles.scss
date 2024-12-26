@@ -1,0 +1,140 @@
+// Paleta de cores pastel
+$primary-color: #a8d5e2; // Azul claro
+$secondary-color: #f7d9c4; // Pêssego
+$terciary-color: #e5cea0; // Bege claro
+$accent-color: #f3d1dc; // Rosa claro
+$secondary-accent-color: #f6a7c1; // Rosa mais escuro
+$tertiary-accent-color: #fcf0cf; // Creme claro
+$background-color-light: #fefae0; // Fundo para tema claro
+$background-color-dark: #121212; // Fundo para tema escuro
+$text-color-light: #333; // Texto para tema claro
+$text-color-dark: #e0e0e0; // Texto para tema escuro
+$button-color-light: #f5b0cb; // Botões tema claro
+$button-hover-light: #d18bb2; // Hover de botões tema claro
+$button-color-dark: #bb86fc; // Botões tema escuro
+$button-hover-dark: #3700b3; // Hover de botões tema escuro
+$text-color: #b16e4b; // Cor padrão do texto
+
+// Tema Claro
+:root {
+  --background-color: #{$background-color-light};
+  --text-color: #{$text-color-light};
+  --button-color: #{$button-color-light};
+  --button-hover-color: #{$button-hover-light};
+  --accent-color: #{$accent-color};
+  --secondary-color: #{$secondary-color};
+}
+
+// Tema Escuro
+:root.dark-mode {
+  --background-color: #{$background-color-dark};
+  --text-color: #{$text-color-dark};
+  --button-color: #{$button-color-dark};
+  --button-hover-color: #{$button-hover-dark};
+}
+
+// Estilos globais para o body
+body {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(180deg, #fde8ea 0%, #e4bfc4 0%, #fefae0 50%);  
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+// Reset e consistência no layout
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Botões
+button {
+  font-family: inherit;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: var(--button-color);
+  color: white;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    background-color: var(--button-hover-color);
+    transform: scale(1.05);
+  }
+
+  &:focus {
+    outline: 2px solid var(--button-hover-color);
+    outline-offset: 2px;
+  }
+
+  // Adicionando animação de seta
+  position: relative;
+  &::after {
+    content: '→';
+    position: absolute;
+    right: -20px;
+    opacity: 0;
+    transition: opacity 0.3s, right 0.3s;
+  }
+
+  &:hover::after {
+    opacity: 1;
+    right: 10px;
+  }
+}
+
+// Seletor de Idiomas
+.language-select {
+  position: relative;
+
+  select {
+    font-family: inherit;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 2px solid var(--button-color);
+    border-radius: 8px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    cursor: pointer;
+    appearance: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover,
+    &:focus {
+      border-color: var(--button-hover-color);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+// Tema Toggle
+.theme-toggle {
+  background-color: var(--button-color);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    background-color: var(--button-hover-color);
+    transform: scale(1.1);
+  }
+
+  mat-icon {
+    color: white;
+    font-size: 24px;
+  }
+}
