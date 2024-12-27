@@ -4,6 +4,8 @@
 /out-tsc
 /build
 /docs
+/.angular
+/.angular/cache
 
 # Node.js modules
 /node_modules
