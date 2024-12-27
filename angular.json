@@ -42,7 +42,7 @@
                   "maximumError": "1mb"
                 }
               ],
-              "baseHref": "/"
+              "baseHref": "/alinenink/"
             },
             "development": {
               "optimization": false,
