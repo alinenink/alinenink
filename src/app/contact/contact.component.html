@@ -1,20 +1,16 @@
 <div class="contact-container">
-    <h2>Contact Me</h2>
-    <p>Feel free to reach out through the options below:</p>
-  
-    <!-- WhatsApp -->
-    <a [href]="whatsappLink" target="_blank" class="contact-link">
-      <mat-icon>whatsapp</mat-icon> Chat on WhatsApp
+  <h2 class="contact-title">{{ 'contact.title' | translate }}</h2>
+  <p class="contact-subtitle">{{ 'contact.subtitle' | translate }}</p>
+
+  <div class="contact-options">
+    <a href="https://wa.me/11959092505" target="_blank" class="contact-option">
+      <i class="fa-brands fa-whatsapp"></i> {{ 'contact.whatsapp' | translate }}
     </a>
-  
-    <!-- E-mail -->
-    <a href="mailto:alinenink&#64;outlook.com" class="contact-link">
-      <mat-icon>email</mat-icon> alinenink&#64;outlook.com
+    <a href="mailto:alinenink@outlook.com" class="contact-option">
+      <i class="fa-solid fa-envelope"></i> {{ 'contact.email' | translate }}
     </a>
-  
-    <!-- LinkedIn -->
-    <a href="https://www.linkedin.com/in/alinenink" target="_blank" class="contact-link">
-      <mat-icon>linkedin</mat-icon> LinkedIn Profile
+    <a href="https://linkedin.com/in/alinenink" target="_blank" class="contact-option">
+      <i class="fa-brands fa-linkedin"></i> {{ 'contact.linkedin' | translate }}
     </a>
   </div>
-  
+</div>

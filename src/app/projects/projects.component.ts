@@ -1,32 +1,33 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, NO_ERRORS_SCHEMA } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { MatTabsModule } from "@angular/material/tabs";
+import { TranslateModule } from "@ngx-translate/core";
 
 @Component({
-  selector: 'app-projects',
+  selector: "app-projects",
+  imports: [CommonModule, MatTabsModule, TranslateModule],
   standalone: true,
-  imports: [CommonModule],
-  templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.scss'],
+  templateUrl: "./projects.component.html",
+  styleUrls: ["./projects.component.scss"],
+  schemas: [NO_ERRORS_SCHEMA], // Permite elementos personalizados
 })
 export class ProjectsComponent {
   projects = [
     {
-      title: 'E-commerce Platform',
-      description: 'A fully functional e-commerce platform with Angular and Node.js.',
-      link: 'https://github.com/username/ecommerce-platform',
-      image: 'assets/projects/ecommerce.jpg',
+      title: "financialDashboard",
+      description: "financialDashboardDescription",
+      link: "https://github.com/alinenink/financialdashboard.io",
+      image: "assets/dashboard.png",
     },
     {
-      title: 'Portfolio Website',
-      description: 'My personal portfolio website showcasing my skills and projects.',
-      link: 'https://github.com/username/portfolio',
-      image: 'assets/projects/portfolio.jpg',
-    },
-    {
-      title: 'Task Manager App',
-      description: 'A productivity app to manage tasks and schedules effectively.',
-      link: 'https://github.com/username/task-manager',
-      image: 'assets/projects/task-manager.jpg',
+      title: "ecommercePlatform",
+      description: "ecommercePlatformDescription",
+      link: "https://github.com/alinenink/ecommerce.io",
+      image: "assets/ecommerce.png",
     },
   ];
+
+  openLink(url: string): void {
+    window.open(url, "_blank");
+  }
 }

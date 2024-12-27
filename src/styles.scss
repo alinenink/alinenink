@@ -1,14 +1,52 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$alinenink-primary: mat.define-palette(mat.$indigo-palette);
+$alinenink-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$alinenink-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$alinenink-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $alinenink-primary,
+      accent: $alinenink-accent,
+      warn: $alinenink-warn,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($alinenink-theme);
+
 // Paleta de cores pastel
 $primary-color: #a8d5e2; // Azul claro
 $secondary-color: #f7d9c4; // Pêssego
-$terciary-color: #e5cea0; // Bege claro
+$tertiary-color: #e5cea0; // Bege claro
 $accent-color: #f3d1dc; // Rosa claro
 $secondary-accent-color: #f6a7c1; // Rosa mais escuro
 $tertiary-accent-color: #fcf0cf; // Creme claro
-$background-color-light: #fefae0; // Fundo para tema claro
-$background-color-dark: #121212; // Fundo para tema escuro
-$text-color-light: #333; // Texto para tema claro
-$text-color-dark: #e0e0e0; // Texto para tema escuro
+$background-color-light: #fefae0; // Fundo tema claro
+$background-color-dark: #121212; // Fundo tema escuro
+$text-color-light: #333; // Texto tema claro
+$text-color-dark: #e0e0e0; // Texto tema escuro
 $button-color-light: #f5b0cb; // Botões tema claro
 $button-hover-light: #d18bb2; // Hover de botões tema claro
 $button-color-dark: #bb86fc; // Botões tema escuro
@@ -23,6 +61,7 @@ $text-color: #b16e4b; // Cor padrão do texto
   --button-hover-color: #{$button-hover-light};
   --accent-color: #{$accent-color};
   --secondary-color: #{$secondary-color};
+  --tertiary-color: #{$tertiary-color};
 }
 
 // Tema Escuro
@@ -33,22 +72,41 @@ $text-color: #b16e4b; // Cor padrão do texto
   --button-hover-color: #{$button-hover-dark};
 }
 
-// Estilos globais para o body
+// Layout Base
+html,
 body {
-  font-family: 'Roboto', sans-serif;
-  background: linear-gradient(180deg, #fde8ea 0%, #e4bfc4 0%, #fefae0 50%);  
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(
+    180deg,
+    #fde8ea 0%,
+    #fef8e7 80%,
+    var(--background-color) 100%
+  );
   color: var(--text-color);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-// Reset e consistência no layout
+// Reset de estilos globais
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+// Estilo Principal
+main {
+  margin-top: 80px; // Compensa header fixo
+  flex: 1; // Garante que o footer fique sempre no final
 }
 
 // Botões
@@ -74,10 +132,8 @@ button {
     outline-offset: 2px;
   }
 
-  // Adicionando animação de seta
-  position: relative;
   &::after {
-    content: '→';
+    content: "→";
     position: absolute;
     right: -20px;
     opacity: 0;
@@ -90,7 +146,7 @@ button {
   }
 }
 
-// Seletor de Idiomas
+// Toggle de Idioma
 .language-select {
   position: relative;
 
@@ -114,7 +170,7 @@ button {
   }
 }
 
-// Tema Toggle
+/* Botão de alternar tema */
 .theme-toggle {
   background-color: var(--button-color);
   border: none;
@@ -133,8 +189,13 @@ button {
     transform: scale(1.1);
   }
 
-  mat-icon {
+  i {
     color: white;
-    font-size: 24px;
+    font-size: 20px;
   }
+}
+
+html,
+body {
+  height: 100%;
 }

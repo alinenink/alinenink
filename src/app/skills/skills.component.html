@@ -1,24 +1,43 @@
 <div class="skills-container">
-    <h2>My Skills</h2>
-    <p>Here are the skills I’ve mastered over the years.</p>
-  
-    <mat-tab-group>
-      <mat-tab label="Hard Skills">
-        <div class="skills-grid">
-          <div class="skill-card" *ngFor="let skill of hardSkills">
-            <mat-icon class="skill-icon">{{ skill.icon }}</mat-icon>
-            <h3>{{ skill.name }}</h3>
-          </div>
-        </div>
-      </mat-tab>
-      <mat-tab label="Soft Skills">
-        <div class="skills-grid">
-          <div class="skill-card" *ngFor="let skill of softSkills">
-            <mat-icon class="skill-icon">{{ skill.icon }}</mat-icon>
-            <h3>{{ skill.name }}</h3>
-          </div>
-        </div>
-      </mat-tab>
-    </mat-tab-group>
+  <!-- Título e Subtítulo -->
+  <h2 class="skills-title">{{ 'technologies.title' | translate }}</h2>
+  <p class="skills-subtitle">{{ 'technologies.subtitle' | translate }}</p>
+
+  <!-- Hard Skills -->
+  <div class="skills-category">
+    <h3 class="skills-category-title">{{ 'technologies.hardSkills.title' | translate }}</h3>
+    <div
+      class="skills-bar"
+      [ngClass]="{
+        frameworks: skill.category === 'Framework',
+        languages: skill.category === 'Language',
+        methodologies: skill.category === 'Methodology',
+        cloud: skill.category === 'Cloud',
+        testing: skill.category === 'Testing',
+        tools: skill.category === 'Tools',
+        miscellaneous: skill.category === 'Miscellaneous',
+        architecture: skill.category === 'Architecture'
+      }"
+      *ngFor="let skill of hardSkills"
+    >
+      <i class="{{ skill.icon }} skill-icon"></i>
+      <span class="skill-label">{{ 'technologies.hardSkills.' + skill.name | translate }}</span>
+      <div
+        class="progress"
+        [style.width.%]="skill.animatedLevel"
+        [attr.data-percentage]="skill.level"
+      ></div>
+    </div>
   </div>
-  
+
+  <!-- Soft Skills -->
+  <div class="skills-category">
+    <h3 class="skills-category-title">{{ 'technologies.softSkills.title' | translate }}</h3>
+    <div class="soft-skills-grid">
+      <div class="soft-skill-item" *ngFor="let skill of softSkills">
+        <i class="{{ skill.icon }} skill-icon"></i>
+        <div class="soft-skill-title">{{ 'technologies.softSkills.' + skill.name | translate }}</div>
+      </div>
+    </div>
+  </div>
+</div>

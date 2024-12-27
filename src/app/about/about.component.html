@@ -1,15 +1,21 @@
-  <div class="about-container"  id="about">
-    <h2>About Me</h2>
-    <p>Here’s a quick glance at my journey so far.</p>
-    
-    <div class="timeline">
-      <div class="timeline-item" *ngFor="let item of timeline">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.description }}</p>
-          <span>{{ item.date }}</span>
-        </div>
+<div class="about-container" id="about">
+  <h2 class="about-title">{{ 'ABOUT_ME' | translate }}</h2>
+  <p class="about-subtitle">{{ 'Here’s a quick glance at my journey so far.' | translate }}</p>
+  <div class="line-decorator"></div>
+
+  <div class="timeline">
+    <div class="timeline-item" *ngFor="let item of timeline">
+      <div class="timeline-dot" title="{{ item.title | translate }}"></div>
+      <div class="timeline-content">
+        <h3>{{ item.title | translate }}</h3>
+        <p>{{ item.description | translate }}</p>
+        <span>{{ item.date }}</span>
       </div>
     </div>
   </div>
+
+  <button class="resume-button">
+    <a href="assets/curriculo.pdf" download="Curriculo-Aline-Nink.pdf">
+      {{ 'Download CV' | translate }} </a>
+  </button>
+</div>
