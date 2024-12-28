@@ -16,7 +16,7 @@ export class ProjectsComponent {
     {
       title: "financialDashboard",
       description: "financialDashboardDescription",
-      link: "https://github.com/alinenink/financialdashboard.io",
+      link: "https://github.com/alinenink/dashboardfinancas",
       image: "assets/dashboard.png",
     },
     {
