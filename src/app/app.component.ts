@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
-import { RouterModule } from "@angular/router";
+import { NavigationEnd, Router, RouterModule } from "@angular/router";
 import { TranslateService, TranslateModule } from "@ngx-translate/core";
 
 @Component({
@@ -11,16 +11,30 @@ import { TranslateService, TranslateModule } from "@ngx-translate/core";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   isDarkMode = false;
   isMenuOpen = false;
 
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService, private router: Router) {
     this.translate.setDefaultLang("en"); // Define o idioma padrão
   }
 
+  ngOnInit(): void {
+    // Ouve eventos de navegação e rola para o topo
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        setTimeout(() => {
+          window.scrollTo(0, 0); // Rola para o topo
+        }, 0); // Garantindo que a página carregue antes
+      }
+    });
+  }
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu() {
+    this.isMenuOpen = false;
   }
 
   toggleDarkMode() {
@@ -32,5 +46,5 @@ export class AppComponent {
     const target = event.target as HTMLSelectElement; // Type assertion
     const selectedLanguage = target.value;
     this.translate.use(selectedLanguage);
-  }  
+  }
 }

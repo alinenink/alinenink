@@ -1,11 +1,11 @@
 <header class="header">
   <div class="header-links">
     <nav class="navbar" [ngClass]="{ 'open': isMenuOpen }">
-      <a routerLink="/home" routerLinkActive="active">{{ 'home' | translate }}</a>
-      <a routerLink="/about" routerLinkActive="active">{{ 'aboutMe' | translate }}</a>
-      <a routerLink="/skills" routerLinkActive="active">{{ 'skills' | translate }}</a>
-      <a routerLink="/projects" routerLinkActive="active">{{ 'projects' | translate }}</a>
-      <a routerLink="/contact" routerLinkActive="active">{{ 'contactHeader' | translate }}</a>
+      <a routerLink="/home" routerLinkActive="active" (click)="closeMenu()">{{ 'home' | translate }}</a>
+      <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">{{ 'aboutMe' | translate }}</a>
+      <a routerLink="/skills" routerLinkActive="active" (click)="closeMenu()">{{ 'skills' | translate }}</a>
+      <a routerLink="/projects" routerLinkActive="active" (click)="closeMenu()">{{ 'projects' | translate }}</a>
+      <a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">{{ 'contactHeader' | translate }}</a>
     </nav>
     <button class="menu-toggle" (click)="toggleMenu()">
       <i *ngIf="!isMenuOpen" class="fa fa-bars"></i>

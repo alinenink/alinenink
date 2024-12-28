@@ -12,9 +12,9 @@
   h1 {
     font-size: 3rem;
     color: #3A506B;
-    margin-top: 2rem;
+    margin-top: 4rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-
+    line-height: 1;
     .highlight {
       background: linear-gradient(to right, #f6a7c1, #e67c97);
       -webkit-background-clip: text;
@@ -150,3 +150,10 @@
     padding: 0.5rem 1rem;
   }
 }
+
+@media (max-width: 768px) {
+ .home-container {
+  padding: 3em;
+  }
+}
+
