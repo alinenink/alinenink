@@ -122,19 +122,18 @@
 }
 
 /* Responsividade */
-@media screen  and (min-width: 376x) and (max-width: 768px){
+@media screen and (min-width: 416px) and (max-width: 768px) {
   .home-container {
     padding: 3em;
   }
 }
 
 /* Media Query exclusivo para telas menores que 375px */
-@media screen and (max-width: 375px) {
+@media screen and (min-width: 200px) and (max-width: 415px) {
   .home-container {
     padding: 6em;
   }
 }
-
 
 @media (max-width: 768px) {
   .home-container h1 {
