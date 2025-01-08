@@ -16,15 +16,47 @@ export class ProjectsComponent {
     {
       title: "financialDashboard",
       description: "financialDashboardDescription",
+      technologies: [
+        "Typescript",
+        "React.js",
+        "Redux Toolkit",
+        "Chart.js",
+        "Tailwind CSS",
+        "SCSS",
+      ],
       link: "https://github.com/alinenink/dashboardfinancas",
       image: "assets/dashboard.png",
     },
     {
-      title: "ecommercePlatform",
-      description: "ecommercePlatformDescription",
-      link: "https://github.com/alinenink/ecommerce.io",
-      image: "assets/ecommerce.png",
-    },
+      title: "recipeManager",
+      description: "recipeManagerDescription",
+      technologies: [
+        "Typescript",
+        "Angular",
+        "SCSS",
+        "CSS Grid",
+        "Flexbox",
+        "Tailwind CSS",
+        "Font Awesome",
+        "Node.js",
+        "Express.js"
+      ],
+      link: "https://github.com/alinenink/recipe-manager",
+      image: "assets/recipe-manager.png"
+    }    
+    // {
+    //    title: "ecommercePlatform",
+    //   description: "ecommercePlatformDescription",
+    //    technologies: [
+    //     "Angular",
+    //     "Node.js",
+    //    "Tailwind CSS",
+    //    "Express.js",
+    //     "MongoDB"
+    //  ],
+    //    link: "https://github.com/alinenink/ecommerce.io",
+    //  image: "assets/ecommerce.png",
+    // },
   ];
 
   openLink(url: string): void {

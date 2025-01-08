@@ -6,13 +6,29 @@
     <mat-tab *ngFor="let project of projects" label="{{ project.title | translate }}">
       <div class="project-card">
         <img [src]="project.image" alt="{{ project.title | translate }}" class="project-image" />
-        <h3>{{ project.title | translate }}</h3>
-        <p>{{ project.description | translate }}</p>
-        
-        <button class="project-link" (click)="openLink(project.link)">
-          {{ 'viewOnGithub' | translate }}
-        </button>
+  
+        <div class="project-details">
+          <!-- Título do projeto -->
+          <h2 class="project-title">{{ project.title | translate }}</h2>
+          
+          <!-- Descrição -->
+          <h4 class="section-heading">{{ 'description' | translate }}</h4>
+          <p class="project-description">{{ project.description | translate }}</p>
+          
+          <!-- Tecnologias Utilizadas -->
+          <h4 class="section-heading">{{ 'technologiesUsed' | translate }}</h4>
+          <ul class="technologies-list">
+            <li *ngFor="let tech of project.technologies" class="technology-item">
+              {{ tech | translate }}
+            </li>
+          </ul>
+          
+          <!-- Botão GitHub -->
+          <button class="project-link" (click)="openLink(project.link)">
+            {{ 'viewOnGithub' | translate }}
+          </button>
+        </div>
       </div>
     </mat-tab>
-  </mat-tab-group>
+  </mat-tab-group>  
 </div>
