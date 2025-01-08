@@ -24,7 +24,7 @@ export class ProjectsComponent {
         "Tailwind CSS",
         "SCSS",
       ],
-      link: "https://github.com/alinenink/dashboardfinancas",
+      link: "https://alinenink.github.io/dashboardfinancas",
       image: "assets/dashboard.png",
     },
     {
@@ -41,7 +41,7 @@ export class ProjectsComponent {
         "Node.js",
         "Express.js"
       ],
-      link: "https://github.com/alinenink/recipe-manager",
+      link: "https://alinenink.github.io/myrecipes/",
       image: "assets/recipe-manager.png"
     }    
     // {

@@ -199,3 +199,13 @@ footer {
     }
   }
 }
+
+
+.main-class {
+  height: auto;
+  background: linear-gradient(
+    180deg,
+    var(--background-color) 0%,
+    var(--background-color) 100%
+  );
+}

@@ -64,6 +64,11 @@ $text-color: #b16e4b; // Cor padrão do texto
   --tertiary-color: #{$tertiary-color};
 }
 
+:root {
+  --header-height: 110px; /* Ajuste para a altura do seu header */
+  --footer-height: 80px; /* Ajuste para a altura do seu footer */
+}
+
 // Tema Escuro
 :root.dark-mode {
   --background-color: #{$background-color-dark};
@@ -75,8 +80,9 @@ $text-color: #b16e4b; // Cor padrão do texto
 // Layout Base
 html,
 body {
-  height: 100%;
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
 }
@@ -101,15 +107,10 @@ body {
   max-width: 100vw; /* Previne qualquer problema de overflow */
 }
 
-// Reset de estilos globais
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 // Estilo Principal
 main {
+  min-height: 100vh;
   margin-top: 80px; // Compensa header fixo
   flex: 1; // Garante que o footer fique sempre no final
 }
