@@ -1,25 +1,35 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, OnDestroy } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { GoogleAnalyticsService } from '../services/google-analytics.service'; // Importe o serviço criado
 
 @Component({
-    selector: 'app-home',
-    imports: [CommonModule, TranslateModule, RouterModule],
-    standalone: true,
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss']
+  selector: 'app-home',
+  imports: [CommonModule, TranslateModule, RouterModule],
+  standalone: true,
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements AfterViewInit, OnDestroy {
   private typingInterval: any;
   private langChangeSubscription!: Subscription;
 
-  constructor(private translate: TranslateService, private router: Router) {}
+  constructor(
+    private translate: TranslateService,
+    private router: Router,
+    private googleAnalyticsService: GoogleAnalyticsService // Injete o serviço
+  ) {}
 
   ngAfterViewInit() {
     this.startTypingAnimation();
+
+    // Disparar evento de pageview
+    this.googleAnalyticsService.sendEvent('page_view', {
+      page_path: '/home',
+      page_title: 'Home Page'
+    });
 
     // Ouvir mudanças de idioma globalmente
     this.langChangeSubscription = this.translate.onLangChange.subscribe(() => {
@@ -61,6 +71,12 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
           const yPosition =
             element.getBoundingClientRect().top + window.pageYOffset + yOffset;
           window.scrollTo({ top: yPosition, behavior: 'smooth' });
+
+          // Disparar evento de scroll para uma seção
+          this.googleAnalyticsService.sendEvent('scroll_to_section', {
+            section_id: sectionId,
+            page_path: '/home'
+          });
         }
       }, 100);
     });
@@ -74,4 +90,3 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     clearInterval(this.typingInterval);
   }
 }
- 

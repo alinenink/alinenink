@@ -2,6 +2,7 @@ import { Component, NO_ERRORS_SCHEMA } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { MatTabsModule } from "@angular/material/tabs";
 import { TranslateModule } from "@ngx-translate/core";
+import { GoogleAnalyticsService } from "../services/google-analytics.service"; // Importe o serviço
 
 @Component({
   selector: "app-projects",
@@ -43,23 +44,25 @@ export class ProjectsComponent {
       ],
       link: "https://alinenink.github.io/myrecipes/",
       image: "assets/recipe-manager.png"
-    }    
-    // {
-    //    title: "ecommercePlatform",
-    //   description: "ecommercePlatformDescription",
-    //    technologies: [
-    //     "Angular",
-    //     "Node.js",
-    //    "Tailwind CSS",
-    //    "Express.js",
-    //     "MongoDB"
-    //  ],
-    //    link: "https://github.com/alinenink/ecommerce.io",
-    //  image: "assets/ecommerce.png",
-    // },
+    }
   ];
 
+  constructor(private googleAnalyticsService: GoogleAnalyticsService) {
+    // Disparo de pageview ao acessar a página
+    this.googleAnalyticsService.sendEvent("page_view", {
+      page_path: "/projects",
+      page_title: "Projects Page",
+    });
+  }
+
   openLink(url: string): void {
+    // Abre o link em uma nova aba
     window.open(url, "_blank");
+
+    // Dispara um evento de clique no link para o Google Analytics
+    this.googleAnalyticsService.sendEvent("click_project_link", {
+      project_url: url,
+      page_path: "/projects",
+    });
   }
 }

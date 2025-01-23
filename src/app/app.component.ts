@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { NavigationEnd, Router, RouterModule } from "@angular/router";
 import { TranslateService, TranslateModule } from "@ngx-translate/core";
+import { GoogleAnalyticsService } from "./services/google-analytics.service";
 
 @Component({
   selector: "app-root",
@@ -15,7 +16,11 @@ export class AppComponent implements OnInit {
   isDarkMode = false;
   isMenuOpen = false;
 
-  constructor(private translate: TranslateService, private router: Router) {
+  constructor(
+    private translate: TranslateService,
+    private router: Router,
+    private googleAnalyticsService: GoogleAnalyticsService
+  ) {
     this.translate.setDefaultLang("en"); // Define o idioma padrão
   }
 
@@ -27,6 +32,11 @@ export class AppComponent implements OnInit {
           window.scrollTo(0, 0); // Rola para o topo
         }, 0); // Garantindo que a página carregue antes
       }
+    });
+
+    this.googleAnalyticsService.sendEvent("page_view", {
+      page_section: "footer",
+      page_path: window.location.pathname,
     });
   }
   toggleMenu(): void {
@@ -46,5 +56,16 @@ export class AppComponent implements OnInit {
     const target = event.target as HTMLSelectElement; // Type assertion
     const selectedLanguage = target.value;
     this.translate.use(selectedLanguage);
+  }
+
+  /**
+   * Rastreia cliques nos links do footer
+   * @param linkName Nome do link clicado
+   */
+  trackFooterLink(linkName: string): void {
+    this.googleAnalyticsService.sendEvent("footer_link_click", {
+      link_name: linkName,
+      page_path: window.location.pathname,
+    });
   }
 }

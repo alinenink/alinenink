@@ -3,6 +3,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { TranslateModule } from "@ngx-translate/core";
+import { GoogleAnalyticsService } from "../services/google-analytics.service";
 
 @Component({
   selector: "app-skills",
@@ -17,7 +18,9 @@ import { TranslateModule } from "@ngx-translate/core";
   styleUrls: ["./skills.component.scss"],
 })
 export class SkillsComponent implements OnInit, AfterViewInit {
+  constructor(private googleAnalyticsService: GoogleAnalyticsService) {}
 
+  
   hardSkills = [
     // Languages
     {
@@ -222,21 +225,25 @@ export class SkillsComponent implements OnInit, AfterViewInit {
     },
   ];
 
+
   ngOnInit(): void {
+    // Inicializa os níveis das hard skills para 0
     this.hardSkills.forEach((skill) => {
       skill.animatedLevel = 0;
+    });
+
+    // Disparo de pageview ao acessar a página
+    this.googleAnalyticsService.sendEvent("page_view", {
+      page_path: "/skills",
+      page_title: "Skills Page",
     });
   }
 
   ngAfterViewInit(): void {
-    // Inicialize a animação com 0 e atualize o nível após o atraso
-    this.hardSkills.forEach((skill) => {
-      skill.animatedLevel = 0;
-    });
-
+    // Atualiza os níveis das hard skills com animação
     setTimeout(() => {
       this.hardSkills.forEach((skill) => {
-        skill.animatedLevel = skill.level; // Atualiza para o valor desejado
+        skill.animatedLevel = skill.level;
       });
     }, 300); // Ajuste o atraso para sincronizar com o DOM
   }

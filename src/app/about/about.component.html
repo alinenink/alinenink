@@ -14,8 +14,7 @@
     </div>
   </div>
 
-  <button class="resume-button">
-    <a href="assets/curriculo.pdf" download="Curriculo-Aline-Nink.pdf">
-      {{ 'Download CV' | translate }} </a>
-  </button>
+  <button class="resume-button" (click)="downloadResume()">
+    {{ 'Download CV' | translate }}
+  </button>  
 </div>
