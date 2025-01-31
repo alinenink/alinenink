@@ -95,5 +95,6 @@
   "recipeManager": "Recipe Manager",
   "recipeManagerDescription": "The Recipe Manager is a full stack project, developed with Angular on the frontend and Node.js on the backend, enabling seamless integration between user interfaces and server logic. The application that allows users to add, edit, delete and view recipes organized into categories such as Desserts, Main Dishes, Appetizers, Healthy Options, Snacks, and Drinks. It includes features to mark recipes as favorites, manage user profiles, and track dynamic achievements. Developed with Angular, Node.js, and SCSS, the project was designed with a mobile-first approach but is fully responsive for all screen sizes. The design was created from scratch without using external libraries, ensuring a unique and personalized appearance. Additionally, it uses smooth animations to enhance the user experience.",  "CSS Grid": "CSS Grid",
   "Flexbox": "Flexbox",
-  "Font Awesome": "Font Awesome"
+  "Font Awesome": "Font Awesome",
+  "cv": "The resume language will be the same as the one selected in the application."
 }

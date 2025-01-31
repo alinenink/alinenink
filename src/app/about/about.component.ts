@@ -1,8 +1,9 @@
-import { Component } from "@angular/core";
+import { AfterViewInit, Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
-import { TranslateModule } from "@ngx-translate/core";
+import { TranslateModule, TranslateService } from "@ngx-translate/core";
 import { GoogleAnalyticsService } from "../services/google-analytics.service"; // Importe o serviço de Google Analytics
+import { Subscription } from "rxjs/dist/types";
 
 @Component({
   selector: "app-about",
@@ -11,7 +12,9 @@ import { GoogleAnalyticsService } from "../services/google-analytics.service"; /
   templateUrl: "./about.component.html",
   styleUrls: ["./about.component.scss"],
 })
-export class AboutComponent {
+export class AboutComponent implements AfterViewInit {
+  private langChangeSubscription!: Subscription;
+  selectedLanguage: string = "";
   timeline = [
     {
       title: "graduation",
@@ -50,7 +53,10 @@ export class AboutComponent {
     },
   ];
 
-  constructor(private googleAnalyticsService: GoogleAnalyticsService) {
+  constructor(
+    private googleAnalyticsService: GoogleAnalyticsService,
+    private translate: TranslateService
+  ) {
     // Disparo de Pageview no construtor
     this.googleAnalyticsService.sendEvent("page_view", {
       page_path: "/about",
@@ -58,11 +64,38 @@ export class AboutComponent {
     });
   }
 
+  ngAfterViewInit() {
+    this.selectedLanguage = this.translate.currentLang || "en"; // Pega o idioma inicial
+    console.log(this.selectedLanguage);
+
+
+    // Ouvir mudanças de idioma globalmente
+    this.langChangeSubscription = this.translate.onLangChange.subscribe(
+      (event) => {
+        this.selectedLanguage = event.lang; // Atualiza a variável ao mudar o idioma
+        console.log(this.selectedLanguage);
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    if (this.langChangeSubscription) {
+      this.langChangeSubscription.unsubscribe();
+    }
+  }
+
   /**
    * Método para realizar o download do currículo
    */
   downloadResume(): void {
-    const fileUrl = "assets/curriculo.pdf"; // Caminho para o arquivo
+    let fileUrl;
+
+    if (this.selectedLanguage === 'en') {
+      fileUrl = "assets/CVAline-Nink-English.pdf"; // Caminho para o arquivo ptbr
+    } else {
+      fileUrl = "assets/curriculo.pdf"; // Caminho para o arquivo en
+    }
+
     const link = document.createElement("a");
     link.href = fileUrl;
     link.download = "Curriculo-Aline-Nink.pdf";

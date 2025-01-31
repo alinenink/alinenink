@@ -96,5 +96,6 @@
   "recipeManager": "Gerenciador de Receitas",
   "recipeManagerDescription": "O Gerenciador de Receitas é um projeto full stack, desenvolvido com Angular no frontend e Node.js no backend, permitindo a integração perfeita entre as interfaces do usuário e a lógica do servidor. A aplicação permite adicionar, editar, deletar e visualizar receitas organizadas em categorias como Sobremesas, Pratos Principais, Aperitivos, Opções Saudáveis, Lanches e Bebidas. Inclui funcionalidades para marcar receitas como favoritas, gerenciar perfil de usuário e acompanhar conquistas dinâmicas. Desenvolvido com Angular, Node.js e SCSS, o projeto foi projetado com um design mobile first, mas totalmente responsivo para todos os tamanhos de tela. O design foi criado do zero, sem o uso de bibliotecas externas, garantindo uma aparência única e personalizada. Além disso, utiliza animações suaves para melhorar a experiência do usuário.",  "CSS Grid": "CSS Grid",
   "Flexbox": "Flexbox",
-  "Font Awesome": "Font Awesome"
+  "Font Awesome": "Font Awesome",
+  "cv": "O idioma do curriculo será o mesmo selecionado na aplicação"
 }

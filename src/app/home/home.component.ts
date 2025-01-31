@@ -3,7 +3,7 @@ import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { GoogleAnalyticsService } from '../services/google-analytics.service'; // Importe o serviço criado
+import { GoogleAnalyticsService } from '../services/google-analytics.service';
 
 @Component({
   selector: 'app-home',
@@ -15,14 +15,16 @@ import { GoogleAnalyticsService } from '../services/google-analytics.service'; /
 export class HomeComponent implements AfterViewInit, OnDestroy {
   private typingInterval: any;
   private langChangeSubscription!: Subscription;
+  selectedLanguage: string = '';
 
   constructor(
     private translate: TranslateService,
     private router: Router,
-    private googleAnalyticsService: GoogleAnalyticsService // Injete o serviço
+    private googleAnalyticsService: GoogleAnalyticsService
   ) {}
 
   ngAfterViewInit() {
+    this.selectedLanguage = this.translate.currentLang || 'en'; // Pega o idioma inicial
     this.startTypingAnimation();
 
     // Disparar evento de pageview
@@ -32,7 +34,8 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     });
 
     // Ouvir mudanças de idioma globalmente
-    this.langChangeSubscription = this.translate.onLangChange.subscribe(() => {
+    this.langChangeSubscription = this.translate.onLangChange.subscribe((event) => {
+      this.selectedLanguage = event.lang; // Atualiza a variável ao mudar o idioma
       this.startTypingAnimation();
     });
   }
@@ -49,8 +52,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
     if (element) {
       element.innerHTML = ''; // Limpa o texto anterior
-      clearInterval(this.typingInterval); // Certifique-se de parar animações anteriores
-
+      clearInterval(this.typingInterval);
       this.typingInterval = setInterval(() => {
         if (i < text.length) {
           element.innerHTML += text.charAt(i);
@@ -58,7 +60,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
         } else {
           clearInterval(this.typingInterval);
         }
-      }, 100); // Velocidade da digitação
+      }, 100);
     }
   }
 
@@ -67,12 +69,10 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       setTimeout(() => {
         const element = document.getElementById(sectionId);
         if (element) {
-          const yOffset = -100; // Ajuste para compensar o header fixo
-          const yPosition =
-            element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          const yOffset = -100;
+          const yPosition = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
           window.scrollTo({ top: yPosition, behavior: 'smooth' });
 
-          // Disparar evento de scroll para uma seção
           this.googleAnalyticsService.sendEvent('scroll_to_section', {
             section_id: sectionId,
             page_path: '/home'
@@ -83,7 +83,6 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // Limpar assinaturas e intervalos quando o componente for destruído
     if (this.langChangeSubscription) {
       this.langChangeSubscription.unsubscribe();
     }
