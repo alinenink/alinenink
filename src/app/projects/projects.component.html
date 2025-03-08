@@ -2,33 +2,19 @@
   <h2 class="projects-title">{{ 'projectsTitle' | translate }}</h2>
   <p class="projects-subtitle">{{ 'projectsSubtitle' | translate }}</p>
   <div class="line-decorator"></div>
-  <mat-tab-group>
-    <mat-tab *ngFor="let project of projects" label="{{ project.title | translate }}">
-      <div class="project-card">
-        <img [src]="project.image" alt="{{ project.title | translate }}" class="project-image" />
-  
-        <div class="project-details">
-          <!-- Título do projeto -->
-          <h2 class="project-title">{{ project.title | translate }}</h2>
-          
-          <!-- Descrição -->
-          <h4 class="section-heading">{{ 'description' | translate }}</h4>
-          <p class="project-description">{{ project.description | translate }}</p>
-          
-          <!-- Tecnologias Utilizadas -->
-          <h4 class="section-heading">{{ 'technologiesUsed' | translate }}</h4>
-          <ul class="technologies-list">
-            <li *ngFor="let tech of project.technologies" class="technology-item">
-              {{ tech | translate }}
-            </li>
-          </ul>
-          
-          <!-- Botão GitHub -->
-          <button class="project-link" (click)="openLink(project.link)">
-            {{ 'viewOnGithub' | translate }}
-          </button>
+  <div class="portfolio-container">
+    <div class="gallery">
+      <div *ngFor="let project of projects" class="card">
+        <div class="image-slider">
+          <img *ngFor="let imagem of project.images; let idx = index" [src]="imagem"
+            [class.active]="idx === project.currentImageIndex">
+          <div class="dots">
+            <span *ngFor="let imagem of project.images; let idx = index"
+              [class.active]="idx === project.currentImageIndex" (click)="selectImage(project, idx)"></span>
+          </div>
         </div>
+        <h3 class="projects-title">{{ project.title |translate }}</h3>
+        <button class="view-btn" [routerLink]="['/project', project.id]">{{'viewMore' | translate}} </button>
       </div>
-    </mat-tab>
-  </mat-tab-group>  
-</div>
+    </div>
+  </div>

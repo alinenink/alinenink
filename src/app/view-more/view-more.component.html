@@ -1,0 +1,38 @@
+<div class="projects-container">
+
+    <div class="project-layout">
+        <button class="back-button" (click)="goBack()">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <div class="project-left">
+            <h2 class="projects-title">{{ selectedProject.title | translate }}</h2>
+            <p *ngFor="let desc of selectedProject.description" class="description-text">{{ desc | translate }}</p>
+            <button (click)="openProject(selectedProject.link)">View on GitHub</button>
+        </div>
+        <div class="project-right">
+            <div class="image-slider">
+                <img [src]="selectedProject.images[0]" alt="{{ selectedProject.title }}">
+
+            </div>
+            <div class="tech-icons">
+                <span *ngFor="let tech of selectedProject.technologies" class="tech-badge">
+                    <img class="tech-icon" [src]="getTechIcon(tech)">
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="screenshots-container">
+        <h2 class="section-title">{{'Highlights' | translate}}</h2>
+        <div class="screenshots-grid">
+            <div class="screenshot-item" *ngFor="let img of selectedProject.images; let idx = index">
+                <img [src]="img" alt="Screenshot {{ idx + 1 }}" (click)="openScreenshot(img)">
+            </div>
+        </div>
+    </div>
+    <div class="modal" *ngIf="expandedImage">
+        <div class="modal-content">
+            <button class="close-button" (click)="closeScreenshot()">&times;</button>
+            <img [src]="expandedImage" alt="Expanded Screenshot">
+        </div>
+    </div>
+</div>

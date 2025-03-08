@@ -4,6 +4,14 @@ import { MatIconModule } from "@angular/material/icon";
 import { NavigationEnd, Router, RouterModule } from "@angular/router";
 import { TranslateService, TranslateModule } from "@ngx-translate/core";
 import { GoogleAnalyticsService } from "./services/google-analytics.service";
+import {
+  trigger,
+  transition,
+  style,
+  query,
+  group,
+  animate
+} from '@angular/animations';
 
 @Component({
   selector: "app-root",
@@ -11,6 +19,26 @@ import { GoogleAnalyticsService } from "./services/google-analytics.service";
   standalone: true,
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
+  animations: [
+    trigger('routeAnimations', [
+      transition('* <=> *', [
+        // Define a posição fixa e largura para os elementos envolvidos
+        query(':enter, :leave', style({ position: 'fixed', width: '100%' }), { optional: true }),
+        group([
+          // Anima a nova rota entrando da direita
+          query(':enter', [
+            style({ transform: 'translateX(100%)' }),
+            animate('0.8s ease-in-out', style({ transform: 'translateX(0%)' }))
+          ], { optional: true }),
+          // Anima a rota que está saindo para a esquerda
+          query(':leave', [
+            style({ transform: 'translateX(0%)' }),
+            animate('0.5s ease-in-out', style({ transform: 'translateX(-100%)' }))
+          ], { optional: true })
+        ])
+      ])
+    ])
+  ]
 })
 export class AppComponent implements OnInit {
   isDarkMode = false;
@@ -41,6 +69,10 @@ export class AppComponent implements OnInit {
   }
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  getAnimationData(outlet: any) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 
   closeMenu() {
